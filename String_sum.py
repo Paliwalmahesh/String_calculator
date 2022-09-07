@@ -17,6 +17,8 @@ def StrSum(str):
                 c=''
             if(ord(i)==45):
                 neg=True
+            if(96<ord(i)<123):
+                sum=sum+(ord(i)-96)
     if(c!='' and int(c)<1001):
         if c.isdigit():
             if(neg==True):

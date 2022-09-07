@@ -13,6 +13,9 @@ class TestString_sum(unittest.TestCase):
         self.assertEqual(String_sum.StrSum("//[***]\n-1***2***-3"),stri)
         stri="Negatives not allowed : -1 "
         self.assertEqual(String_sum.StrSum("//[***]\n-1***2***3"),stri)
+    def test_alphabet(self):
+        self.assertEqual(String_sum.StrSum("1,2,a,c"),7)
+        self.assertEqual(String_sum.StrSum("1,2,a,c,d"),11) 
         
 
 if __name__ == '__main__':
