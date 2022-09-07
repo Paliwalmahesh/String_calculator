@@ -8,6 +8,7 @@ class TestString_sum(unittest.TestCase):
         self.assertEqual(String_sum.StrSum("1,2"),3)
     def test_Bigger_1000(self):
         self.assertEqual(String_sum.StrSum("1,2000,1"),2)
+        self.assertEqual(String_sum.StrSum("1,2002,5,20"),26)
     def test_Negative(self):
         stri="Negatives not allowed : -1 -3"
         self.assertEqual(String_sum.StrSum("//[***]\n-1***2***-3"),stri)
