@@ -1,16 +1,31 @@
 
 def StrSum(str):
-    c=''
     sum=0
+    c = ''
+    msg='Negatives not allowed : '
+    neg=False
     for i in str: 
         if i.isdigit():
             c = c + i
-        else:                   
+        else:                    
             if c.isdigit():
-                if(int(c)<1001):
+                if(neg==True):
+                    msg=msg+"-"+c+" "
+                    neg=False
+                elif(int(c)<1000):
                     sum=sum+int(c)
                 c=''
-    if(c!=''and int(c)<1001):
+            if(ord(i)==45):
+                neg=True
+    if(c!='' and int(c)<1001):
         if c.isdigit():
-            sum=sum+int(c)
-    return(sum)
+            if(neg==True):
+                msg=msg+"-"+c
+                neg=False
+            else:
+                sum=sum+int(c)
+              
+    if(len(msg)>24):
+        return msg
+    else:
+        return sum
