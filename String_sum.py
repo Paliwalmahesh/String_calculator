@@ -7,9 +7,10 @@ def StrSum(str):
             c = c + i
         else:                   
             if c.isdigit():
-                sum=sum+int(c)
+                if(int(c)<1001):
+                    sum=sum+int(c)
                 c=''
-    if(c!=''):
+    if(c!=''and int(c)<1001):
         if c.isdigit():
             sum=sum+int(c)
     return(sum)
