@@ -30,6 +30,9 @@ class TestString_sum(unittest.TestCase):
     def test_line_space(self):
         self.assertEqual(String_sum.StrSum("1\n2,3"), 6)
 
+    def test_multiply(self):
+        self.assertEqual(String_sum.StrSum("*1\n3,3"), 9)
+
 
 if __name__ == '__main__':
     unittest.main()

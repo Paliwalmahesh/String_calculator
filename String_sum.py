@@ -3,37 +3,72 @@ def LowerCharValue(ch):
         return (ord(ch)-ord('a')+1)
 
 def StrSum(str):
-    sum = 0
-    c = ''
-    msg = 'Negatives not allowed : '
-    neg = False
-    for i in str:
-        if i.isdigit():
-            c = c + i
-        else:
-            if c.isdigit():  # checking for digit
-                if (neg == True):
-                    msg = msg+"-"+c+" "  # Adding number in string for exception
-                    neg = False
-                elif (int(c) < 1000):
-                    sum = sum+int(c)  # Adding sum
-                c = ''
-            if (ord(i) == ord('-')):  # for finding -ve number
-                neg = True
-            sum += LowerCharValue(i) if(LowerCharValue(i)) else  0
-            
-            
-    if (c != '' and int(c) < 1001):
-        if c.isdigit():
-            if (neg == True):
-                msg = msg+"-"+c
-                neg = False
+    if(str!="" and str[0]=="*"):
+        sum = 1
+        c = ''
+        msg = 'Negatives not allowed : '
+        neg = False
+        for i in str:
+            if i.isdigit():
+                c = c + i
             else:
-                sum = sum+int(c)
+                if c.isdigit(): # checking for digit
+                    
+                    if (neg == True):
+                        msg = msg+"-"+c+" "  # Adding number in string for exception
+                        neg = False
+                    elif (int(c) < 1000):
+                        sum = sum*int(c)  # Adding sum
+                    c = ''
+                if (ord(i) == ord('-')):  # for finding -ve number
+                    neg = True
+                sum *= LowerCharValue(i) if(LowerCharValue(i)) else  0
+                
+        else:        
+            if (c != '' and int(c) < 1001):
+                if c.isdigit():
+                    if (neg == True):
+                        msg = msg+"-"+c
+                        neg = False
+                else:
+                    sum = sum*int(c)
 
-    if (len(msg) > 24):
-        return msg  # exception for -ve number
+        if (len(msg) > 24):
+            return msg  # exception for -ve number
+        else:
+            return sum
     else:
-        return sum
+        sum = 0
+        c = ''
+        msg = 'Negatives not allowed : '
+        neg = False
+        for i in str:
+            if i.isdigit():
+                c = c + i
+            else:
+                if c.isdigit():  # checking for digit
+                    if (neg == True):
+                        msg = msg+"-"+c+" "  # Adding number in string for exception
+                        neg = False
+                    elif (int(c) < 1000):
+                        sum = sum+int(c)  # Adding sum
+                    c = ''
+                if (ord(i) == ord('-')):  # for finding -ve number
+                    neg = True
+                sum += LowerCharValue(i) if(LowerCharValue(i)) else  0
+                
+                
+        if (c != '' and int(c) < 1001):
+            if c.isdigit():
+                if (neg == True):
+                    msg = msg+"-"+c
+                    neg = False
+                else:
+                    sum = sum+int(c)
 
-StrSum("1,2,3")
+        if (len(msg) > 24):
+            return msg  # exception for -ve number
+        else:
+            return sum
+
+print(StrSum("*1\n3,3"))
