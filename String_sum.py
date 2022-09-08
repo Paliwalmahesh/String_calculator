@@ -1,53 +1,55 @@
-def lower_char_value(ch):
-    if (ord('a') <= ord(ch) <= ord('z')):  # Adding the number corresponding to the alphabet
-        return (ord(ch)-ord('a')+1)
+def lower_char_value(input_ch):
+    if (ord('a') <= ord(input_ch) <= ord('z')):  # Adding the number corresponding to the alphabet
+        return (ord(input_ch)-ord('a')+1)
 
 
-def opration_digit(s, li):
-    if (s != "" and li != []):
-        if (s[0] == "*"):
+def opration_digit(input_str, int_list):
+    if (input_str != "" and int_list != []):
+        if (input_str[0] == "*"):
             ans = 1
-            for i in li:
+            for i in int_list:
                 ans = ans*i
             return ans
         else:
             ans = 0
-            for i in li:
+            for i in int_list:
                 ans = ans+i
             return ans
 
 
-def str_opration(s):
-    c = ''
-    li = []
-    msg = 'Negatives not allowed : '
-    neg = False
-    for i in s:
+def str_opration(input_str):
+    digit_str = ''
+    int_list = []
+    negative_exception = 'Negatives not allowed : '
+    negative_digit = False
+    for i in input_str:
         if i.isdigit():
-            c = c + i
+            digit_str = digit_str + i
         else:
-            if c.isdigit():  # checking for digit
-                if (neg == True):
-                    msg = msg+"-"+c+" "  # Adding number in string for exception
-                    neg = False
-                elif (int(c) < 1000):
-                    li.append(int(c))  # Adding sum
-                c = ''
+            if digit_str.isdigit():  # checking for digit
+                if (negative_digit == True):
+                    negative_exception = negative_exception+"-"+digit_str + \
+                        " "  # Adding number in string for exception
+                    negative_digit = False
+                elif (int(digit_str) < 1000):
+                    int_list.append(int(digit_str))  # Adding sum
+                digit_str = ''
             if (ord(i) == ord('-')):  # for finding -ve number
-                neg = True
-            li.append(lower_char_value(i)) if (lower_char_value(i)) else 0
+                negative_digit = True
+            int_list.append(lower_char_value(i)) if (
+                lower_char_value(i)) else 0
 
-    if (c != '' and int(c) < 1001):
-        if c.isdigit():
-            if (neg == True):
-                msg = msg+"-"+c
-                neg = False
+    if (digit_str != '' and int(digit_str) < 1001):
+        if digit_str.isdigit():
+            if (negative_digit == True):
+                negative_exception = negative_exception+"-"+digit_str
+                negative_digit = False
             else:
-                li.append(int(c))
+                int_list.append(int(digit_str))
 
-    if (len(msg) > 24):
-        return msg  # exception for -ve number
-    elif (opration_digit(s, li) != None):
-        return opration_digit(s, li)
+    if (len(negative_exception) > 24):
+        return negative_exception  # exception for -ve number
+    elif (opration_digit(input_str, int_list) != None):
+        return opration_digit(input_str, int_list)
     else:
         return 0
