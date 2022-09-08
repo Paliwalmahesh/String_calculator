@@ -1,3 +1,6 @@
+def LowerCharValue(ch):
+    if (ord('a') <= ord(ch) <= ord('z')):  # Adding the number corresponding to the alphabet
+        return (ord(ch)-ord('a')+1)
 
 def StrSum(str):
     sum = 0
@@ -17,8 +20,9 @@ def StrSum(str):
                 c = ''
             if (ord(i) == ord('-')):  # for finding -ve number
                 neg = True
-            if (ord('a') <= ord(i) <= ord('z')):  # Adding the number corresponding to the alphabet
-                sum = sum+(ord(i)-ord('a')+1)
+            sum += LowerCharValue(i) if(LowerCharValue(i)) else  0
+            
+            
     if (c != '' and int(c) < 1001):
         if c.isdigit():
             if (neg == True):
@@ -31,3 +35,5 @@ def StrSum(str):
         return msg  # exception for -ve number
     else:
         return sum
+
+StrSum("1,2,3")
